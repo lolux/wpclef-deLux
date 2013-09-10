@@ -272,14 +272,13 @@ class WPClef {
 	public static function disable_login_form() {
 		// if disable passwords is set in plugin options, then hide the user/pass input form on login screen and show Clef login button only
 		if ((self::setting("clef_password_settings_disable_passwords") == 1) && (!$_POST['wp-submit'])) {
-			$key = self::setting( 'clef_password_settings_override_force_clef_key' );
+			$key = self::setting( 'override_force_clef_key' );
 				if (is_user_logged_in()) {
 					header("Location: " . admin_url());
 					exit();
 				} elseif ($_GET['ForceClefOverrideKey'] == $key) {
 					return;
-				}
-				else {
+				} else {
 					wp_enqueue_script('jquery');
 					login_header(__('Log In'), ''); ?>
 					<form name="loginform" id="loginform" action="" method="post">
@@ -288,7 +287,6 @@ class WPClef {
 					<?php login_footer();	
 					exit();
 				}
-
 		}
 	}
 	/* end Lo edit 1 of 2 ***/
