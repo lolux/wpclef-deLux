@@ -275,7 +275,7 @@ class WPClef {
 				if (is_user_logged_in()) {
 					header("Location: " . admin_url());
 					exit();
-				} elseif ($_GET['ForceClefOverrideKey'] == self::setting("clef_password_settings_override_force_clef_key")) {
+				} elseif ($_GET['ForceClefOverrideKey'] == self::setting('clef_password_settings_override_force_clef_key')) {
 					return;
 				}
 				else {
