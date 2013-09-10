@@ -39,6 +39,7 @@ class WPClefAdmin {
 
 		$settings->addField('app_id', 'App ID', Settings_API_Util_Field::TYPE_TEXTFIELD);
 		$settings->addField('app_secret', 'App Secret', Settings_API_Util_Field::TYPE_TEXTFIELD);
+		$settings->addField('override_key', 'Override Key', Settings_API_Util_Field::TYPE_TEXTFIELD);
 
 		$pw_settings = $form->addSection('clef_password_settings', "Protect yourself from your password", "print_password_descript");
 		
