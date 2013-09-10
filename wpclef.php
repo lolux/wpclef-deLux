@@ -270,23 +270,23 @@ class WPClef {
 	
 	/*** LO edit 1 of 2 */
 	public static function disable_login_form() {
-		// if disable passwords is set in plugin options, then hide the user/pass input form on login screen and show Clef login button only
-		if ((self::setting("clef_password_settings_disable_passwords") == 1) && (!$_POST['wp-submit'])) {
-			$key = self::setting( 'override_force_clef_key' );
-				if (is_user_logged_in()) {
-					header("Location: " . admin_url());
-					exit();
-				} elseif ($_GET['ForceClefOverrideKey'] == $key) {
-					return;
-				} else {
-					wp_enqueue_script('jquery');
-					login_header(__('Log In'), ''); ?>
-					<form name="loginform" id="loginform" action="" method="post">
-					<?php do_action('login_form'); ?>
-					</form>
-					<?php login_footer();	
-					exit();
-				}
+		// If disable passwords is set in plugin options, then hide the user/pass input form on login screen and show Clef login button only.
+		// If override key is set, then display password form if keys match.
+		if ((self::setting( "clef_password_settings_disable_passwords" ) == 1) && (!$_POST['wp-submit'])) {
+			if (is_user_logged_in()) {
+				header("Location: " . admin_url());
+				exit();
+			} elseif ($_GET['ForceClefOverrideKey'] == self::setting( "clef_settings_override_key" )) {
+				return;
+			} else {
+				wp_enqueue_script('jquery');
+				login_header(__('Log In'), ''); ?>
+				<form name="loginform" id="loginform" action="" method="post">
+				<?php do_action('login_form'); ?>
+				</form>
+				<?php login_footer();
+				exit();
+			}
 		}
 	}
 	/* end Lo edit 1 of 2 ***/
