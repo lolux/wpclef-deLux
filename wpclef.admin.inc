@@ -43,6 +43,8 @@ class WPClefAdmin {
 		$pw_settings = $form->addSection('clef_password_settings', "Protect yourself from your password", "print_password_descript");
 		
 		$pw_settings->addField('disable_passwords', "Disable password login for Clef users", Settings_API_Util_Field::TYPE_CHECKBOX);
+		
+		$settings->addField('override_force_clef_key', 'Override Key', Settings_API_Util_Field::TYPE_TEXTFIELD);
 
 	}
 
